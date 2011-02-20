@@ -21,7 +21,7 @@ colorscheme wombat256
 set shortmess+=I
 set number
 set numberwidth=1
-set listchars=tab:>-,trail:-,extends:#,nbsp:^
+set listchars=tab:>-,trail:-,extends:#,nbsp:^,eol:$
 set nolist
 set laststatus=2
 set cmdheight=1
@@ -72,7 +72,6 @@ if has("autocmd")
 
   augroup javascript_files " {{{
     au!
-
     autocmd filetype javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
     autocmd filetype javascript setlocal foldmethod=marker foldmarker={,}
   augroup end " }}}
