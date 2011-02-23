@@ -21,7 +21,7 @@ colorscheme wombat256
 set shortmess+=I
 set number
 set numberwidth=1
-set listchars=tab:>-,trail:-,extends:#,nbsp:^,eol:$
+set listchars=tab:>-,trail:-,extends:#,nbsp:^,eol:<
 set nolist
 set laststatus=2
 set cmdheight=1
