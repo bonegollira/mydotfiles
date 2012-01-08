@@ -6,6 +6,23 @@
 " Use only settings of vim.
 set nocompatible
 
+" {{{ vundle settings
+filetype off
+
+set rtp+=~/.vim/vundle/
+call vundle#rc()
+
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'ZenCoding.vim'
+Bundle 'php-doc--su'
+Bundle 'javascript.vim'
+Bundle 'tpope/vim-rails'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'groenewege/vim-less'
+Bundle 'othree/html5.vim'
+
+" }}}
+
 " Filetype
 filetype plugin indent on
 
@@ -13,29 +30,39 @@ filetype plugin indent on
 
 syntax on
 set t_Co=256
-colorscheme wombat256
+"colorscheme wombat256mod
+colorscheme solarized
 
 " }}}
 
 " Editing settings {{{
+set hidden
 set shortmess+=I
 set number
 set numberwidth=1
-set listchars=tab:>-,trail:-,extends:#,nbsp:^,eol:<
-set nolist
+set list
+set listchars=tab:>-,trail:-,extends:#,nbsp:^,eol:$
 set laststatus=2
 set cmdheight=1
 set showcmd
 set title
 set scrolloff=2
 set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
-set autoindent
 set backspace=indent,eol,start
+
+" tabs
+set smartindent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smarttab
+
+" search
+set ignorecase
+set smartcase
+set wrapscan
+set nohlsearch
 " }}}
 
 "command Tab complement settings {{{
@@ -55,6 +82,12 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 " Filetype specific settings {{{
 if has("autocmd")
 
+  augroup filetype_detection " {{{
+
+    autocmd BufNewFile,BufRead Gemfile setlocal filetype=ruby
+
+  augroup end " }}}
+
   augroup invisible_chars "{{{
     au!
 
@@ -62,6 +95,9 @@ if has("autocmd")
     autocmd filetype ruby setlocal list
     autocmd filetype php setlocal list
     autocmd filetype javascript setlocal list
+    autocmd filetype coffee setlocal list
+    autocmd filetype css setlocal list
+    autocmd filetype html setlocal list
   augroup end " }}}
 
   augroup ruby_files " {{{
@@ -73,7 +109,11 @@ if has("autocmd")
   augroup javascript_files " {{{
     au!
     autocmd filetype javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-    autocmd filetype javascript setlocal foldmethod=marker foldmarker={,}
+  augroup end " }}}
+
+  augroup coffeescript_files " {{{
+    au!
+    autocmd filetype coffee setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
   augroup end " }}}
 
   augroup php_files " {{{
@@ -177,6 +217,17 @@ nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 
+nmap ,u :set fileformat=unix<CR>
+nmap { <c-w><
+nmap } <c-w>>
+
+" }}}
+"
+
+" command {{{
+command! Utf8  :e ++enc=utf-8
+command! Eucjp :e ++enc=euc-jp
+command! Sjis  :e ++enc=shift-jis
 " }}}
 
 " Plugin settings {{{
@@ -196,6 +247,59 @@ nmap ,6 :b6<CR>
 nmap ,7 :b7<CR>
 nmap ,8 :b8<CR>
 nmap ,9 :b9<CR>
+" }}}
+
+" zencoding.vim {{{
+
+let g:user_zen_settings = {
+\  "lang":"ja",
+\  "indentation":"    ",
+\  "html":{
+\    "snippets":{
+\      'html:jqm': "<!DOCTYPE HTML>\n"
+\                . "<html lang=\"${lang}\">\n"
+\                . "<head>\n"
+\                . "    <meta charset=\"${charset}\">\n"
+\                . "    <title></title>\n"
+\                . "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+\                . "    <link rel=\"stylesheet\" href=\"http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css\" />\n"
+\                . "    <script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-1.6.4.min.js\"></script>\n"
+\                . "    <script type=\"text/javascript\" src=\"http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js\"></script>\n"
+\                . "</head>\n"
+\                . "<body>\n\t${child}|\n</body>\n"
+\                . "</html>",
+\    },
+\    "default_attributes" : {
+\      "link:less"   : {"rel": "stylesheet/less", "type": "text/css", "href": "|"},
+\      "div:page"    : {"data-role": "page", "data-title": "|"},
+\      "div:header"  : {"data-role": "header"},
+\      "div:footer"  : {"data-role": "footer"},
+\      "div:content" : {"data-role": "content"},
+\      "meta:viewport" : {"name": "viewport", "content": "width=device-width, initial-scale=1"},
+\      "a:back"      : {"data-rel": "back"},
+\      "a:external"  : {"rel": "external"},
+\      "a:reverse"   : {"data-direction": "reverse"},
+\      "a:dialog": {"data-rel": "dialog"},
+\    },
+\    "aliases" : {
+\      "link:*" : "link",
+\      "meta:*" : "meta",
+\      "div:*" : "div",
+\      "r:pg"  : "div:page",
+\      "r:hd"  : "div:header",
+\      "r:cnt" : "div:content",
+\      "r:ft"  : "div:footer",
+\      "l:bk"  : "a:back",
+\      "l:ex"  : "a:external",
+\      "l:rvs" : "a:reverse",
+\      "l:dlg" : "a:dialog",
+\
+\    },
+\  },
+\}
+
+" }}}
+
 " }}}
 
 " }}}
