@@ -32,6 +32,7 @@ syntax on
 set t_Co=256
 "colorscheme wombat256mod
 colorscheme solarized
+set background=dark
 
 " }}}
 
