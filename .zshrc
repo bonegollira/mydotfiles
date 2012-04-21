@@ -1,20 +1,8 @@
 #
 # .zshrc
 #
-# maintained by hanai
+# maintained by pirosikick
 #
-
-umask 022
-
-# export env
-export EDITOR=vim
-export PAGER=less
-export GREP_OPTION='--color=auto'
-export LANG=ja_JP.UTF-8
-export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
-
-fpath=($fpath $HOME/.zfunc)
-path=($path $HOME/.bin)
 
 # alias
 alias ls="ls -ahGF"
@@ -27,12 +15,35 @@ alias -g L='| vim -R -'
 alias -g ID='`id -u`'
 
 # prompt
+autoload -Uz add-zsh-hook
+autoload -Uz colors; colors
+autoload -Uz vcs_info
 
-autoload -Uz colors
-colors
+zstyle ':vcs_info:*' enable git svn hg bzr
+zstyle ':vcs_info:*' formats '(%s)-[%b]'
+zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
+zstyle ':vcs_info:bzr:*' use-simple true
+
+autoload -Uz is-at-least
+if is-at-least 4.3.10; then
+    # この check-for-changes が今回の設定するところ
+    zstyle ':vcs_info:git:*' check-for-changes true
+    zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
+    zstyle ':vcs_info:git:*' unstagedstr "-"  # 適当の文字列に変更する
+    zstyle ':vcs_info:git:*' formats '(%s)-[%b] %c%u'
+    zstyle ':vcs_info:git:*' actionformats '(%s)-[%b|%a] %c%u'
+fi
+
+function _update_vcs_info_msg() {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+add-zsh-hook precmd _update_vcs_info_msg
 
 PROMPT="%{$fg[green]%}%~ %#%{$reset_color%} "
-RPROMPT="%{$fg[cyan]%}☁  %* %{$fg[red]%}%n@%m ☁%{$fg[blue]%}%{$reset_color%}"
+RPROMPT="%{$fg[red]%}☁  %1(v|%F{red}%1v%f|) %{$fg[cyan]%}%* %{$fg[blue]%}%n@%m ☁%{$reset_color%}"
 PROMPT2="%{$fg[cyan]%}%_%> %{$reset_color}"
 SPROMPT="%{$fg[red]%}%r is correct? [n,y,a,e]: %{$reset_color}"
 

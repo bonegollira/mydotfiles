@@ -6,10 +6,29 @@
 " Use only settings of vim.
 set nocompatible
 
-" {{{ vundle settings
+let s:iswin = has('win32') || has('win64')
+
+" Use English interface.
+if s:iswin
+  " For Windows.
+  language message en
+  let $MYVIMDIR = expand('~/vimfiles')
+else
+  " For Linux.
+  language mes C
+  let $MYVIMDIR = expand('~/.vim')
+endif
+
+if s:iswin
+  " Exchange path separator.
+  set shellslash
+endif
+
+" {{{ Vundle settings
+
 filetype off
 
-set rtp+=~/.vim/vundle/
+set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
 Bundle 'fholgado/minibufexpl.vim'
@@ -20,131 +39,146 @@ Bundle 'tpope/vim-rails'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'groenewege/vim-less'
 Bundle 'othree/html5.vim'
+Bundle 'scrooloose/nerdtree'
 
 " }}}
 
-" Filetype
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 
-" Highlighting {{{
+" Options {{{
 
+" indent
+set autoindent
+set smartindent
+set expandtab
+set smarttab
+set tabstop=4
+
+" search
+set hlsearch
+set smartcase
+
+" listchars
+set list
+set listchars=tab:>_,extends:>,precedes:<,eol:$
+
+" shift
+set shiftround
+set shiftwidth=4
+
+" completion
+set complete=.,w,b,u,t,i,d,k,kspell
+set wildmenu
+set wildmode=list:longest
+set pumheight=20
+
+" swap
+set swapfile
+set directory-=.
+
+" scroll
+set scrolloff=2
+
+" fsync() is slow...
+if has('unix')
+  set nofsync
+  set swapsync=
+endif
+
+" backup
+set backup
+let &backupdir = $MYVIMDIR . '/backup'
+if !isdirectory(&backupdir)
+  call mkdir(&backupdir, 'p')
+endif
+
+function! SandboxCallOptionFn(option_name) "{{{
+  try
+    return s:{a:option_name}()
+  catch
+    call setbufvar('%', '&' . a:option_name, '')
+    return ''
+  endtry
+endfunction "}}}
+
+" title
+set title
+function! s:titlestring() "{{{
+  if exists('t:cwd')
+    return t:cwd . ' (tab)'
+  elseif haslocaldir()
+    return getcwd() . ' (local)'
+  else
+    return getcwd()
+  endif
+endfunction "}}}
+let &titlestring = '%{SandboxCallOptionFn("titlestring")}'
+
+" statusline
+set laststatus=2
+set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
+
+" syntax
 syntax on
 set t_Co=256
-"colorscheme wombat256mod
-colorscheme solarized
-set background=dark
+colorscheme wombat256mod
+"colorscheme solarized
 
-" }}}
-
-" Editing settings {{{
-set hidden
-set shortmess+=I
+" number
 set number
 set numberwidth=1
-set list
-set listchars=tab:>-,trail:-,extends:#,nbsp:^,eol:$
+
+set hidden
+set shortmess+=I
 set laststatus=2
 set cmdheight=1
 set showcmd
-set title
-set scrolloff=2
-set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
-set backspace=indent,eol,start
+set backspace=indent,start
 
-" tabs
-set smartindent
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smarttab
-
-" search
-set ignorecase
-set smartcase
-set wrapscan
-set nohlsearch
-" }}}
-
-"command Tab complement settings {{{
-set wildmenu
-set wildmode=list:longest
-"}}}
-
-" Folding rules {{{
-
+" fold
 set foldenable
 set foldmethod=marker
 set foldlevelstart=0
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
-" }}}
-
-" Filetype specific settings {{{
-if has("autocmd")
-
-  augroup filetype_detection " {{{
-
-    autocmd BufNewFile,BufRead Gemfile setlocal filetype=ruby
-
-  augroup end " }}}
-
-  augroup invisible_chars "{{{
-    au!
-
-    autocmd filetype vim setlocal list
-    autocmd filetype ruby setlocal list
-    autocmd filetype php setlocal list
-    autocmd filetype javascript setlocal list
-    autocmd filetype coffee setlocal list
-    autocmd filetype css setlocal list
-    autocmd filetype html setlocal list
-  augroup end " }}}
-
-  augroup ruby_files " {{{
-    au!
-
-    autocmd filetype ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-  augroup end " }}}
-
-  augroup javascript_files " {{{
-    au!
-    autocmd filetype javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-  augroup end " }}}
-
-  augroup coffeescript_files " {{{
-    au!
-    autocmd filetype coffee setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-  augroup end " }}}
-
-  augroup php_files " {{{
-    au!
-
-    autocmd filetype php setlocal foldmethod=marker
-    autocmd filetype php setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-  augroup end " }}}
-
-  augroup vim_files " {{{
-    au!
-
-    autocmd filetype vim setlocal foldmethod=marker
-    autocmd filetype vim setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-  augroup end " }}}
-
-endif
-" }}}
-
-" Encoding Settings {{{
-
+" encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set termencoding=utf-8
 set fileencodings=iso-2022-jp,utf-8,ucs2le,ucs-2,cp932,euc-jp
 
-" 文字コードの自動認識
-" ずんwiki
-" http://www.kawaz.jp/pukiwiki/?vim#cb691f26
-" {{{
+" fileformats
+set fileformats=unix,dos,mac
+
+" }}}
+
+" Autocmd {{{
+
+function! s:set_short_indent()  "{{{
+  setlocal expandtab softtabstop=2 shiftwidth=2
+endfunction " }}}
+
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+" Filetype detection
+autocmd MyAutoCmd BufNewFile,BufRead Gemfile* setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
+autocmd MyAutoCmd BufNewFile,BufRead *.sass   setlocal filetype=sass
+autocmd MyAutoCmd BufNewFile,BufRead *.less   setlocal filetype=less
+
+" Short indent
+autocmd MyAutoCmd filetype ruby   call s:set_short_indent()
+autocmd MyAutoCmd filetype vim    call s:set_short_indent()
+autocmd MyAutoCmd filetype coffee call s:set_short_indent()
+autocmd MyAutoCmd filetype sass   call s:set_short_indent()
+autocmd MyAutoCmd filetype less   call s:set_short_indent()
+
+" }}}
+
+" Encoding detection http://www.kawaz.jp/pukiwiki/?vim#cb691f26 {{{
 if &encoding !=# 'utf-8'
   set encoding=japan
   set fileencoding=japan
@@ -187,29 +221,25 @@ if has('iconv')
   unlet s:enc_jis
 endif
 
-if has('autocmd')
-  function! AU_ReCheck_FENC()
-    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
-      let &fileencoding=&encoding
-    endif
-  endfunction
-  autocmd BufReadPost * call AU_ReCheck_FENC()
-endif
-
-set fileformats=unix,dos,mac
+function! AU_ReCheck_FENC()
+  if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
+    let &fileencoding=&encoding
+  endif
+endfunction
+autocmd MyAutoCmd BufReadPost * call AU_ReCheck_FENC()
 
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
 " }}}
 
-" }}}
-
 " Shortcut mappings {{{
-nmap j gj
-vmap j gj
-nmap k gk
-vmap k gk
+
+" :nohlsearch
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
+noremap j gj
+noremap k gk
 
 nmap n nzz
 nmap N Nzz
@@ -223,35 +253,34 @@ nmap { <c-w><
 nmap } <c-w>>
 
 " }}}
-"
 
-" command {{{
+" Reopen with other encoding {{{
+
 command! Utf8  :e ++enc=utf-8
 command! Eucjp :e ++enc=euc-jp
 command! Sjis  :e ++enc=shift-jis
+
 " }}}
 
 " Plugin settings {{{
 
-" minibufexplorer {{{
+" minibufexplorer.vim
 let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
 
-nmap ,1 :b1<CR>
-nmap ,2 :b2<CR>
-nmap ,3 :b3<CR>
-nmap ,4 :b4<CR>
-nmap ,5 :b5<CR>
-nmap ,6 :b6<CR>
-nmap ,7 :b7<CR>
-nmap ,8 :b8<CR>
-nmap ,9 :b9<CR>
-" }}}
+nnoremap ,1 :b1<CR>
+nnoremap ,2 :b2<CR>
+nnoremap ,3 :b3<CR>
+nnoremap ,4 :b4<CR>
+nnoremap ,5 :b5<CR>
+nnoremap ,6 :b6<CR>
+nnoremap ,7 :b7<CR>
+nnoremap ,8 :b8<CR>
+nnoremap ,9 :b9<CR>
 
-" zencoding.vim {{{
-
+" zencoding.vim
 let g:user_zen_settings = {
 \  "lang":"ja",
 \  "indentation":"    ",
@@ -272,6 +301,7 @@ let g:user_zen_settings = {
 \    },
 \    "default_attributes" : {
 \      "link:less"   : {"rel": "stylesheet/less", "type": "text/css", "href": "|"},
+\      "script:yui"  : {"type": "text/javascript", "src": "http://yui.yahooapis.com/3.4.1/build/yui/yui-min.js"},
 \      "div:page"    : {"data-role": "page", "data-title": "|"},
 \      "div:header"  : {"data-role": "header"},
 \      "div:footer"  : {"data-role": "footer"},
@@ -297,10 +327,11 @@ let g:user_zen_settings = {
 \
 \    },
 \  },
+\  "eruby":{
+\    "snippets":{
+\      'erb': "<%= ${child}| %>",
+\    },
+\  },
 \}
-
-" }}}
-
-" }}}
 
 " }}}
