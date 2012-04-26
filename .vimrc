@@ -164,15 +164,17 @@ augroup MyAutoCmd
 augroup END
 
 " Filetype detection
-autocmd MyAutoCmd BufNewFile,BufRead Gemfile* setlocal filetype=ruby
-autocmd MyAutoCmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
-autocmd MyAutoCmd BufNewFile,BufRead *.sass   setlocal filetype=sass
-autocmd MyAutoCmd BufNewFile,BufRead *.less   setlocal filetype=less
+autocmd MyAutoCmd BufNewFile,BufRead Gemfile*   setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead Guardfile  setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead *.coffee   setlocal filetype=coffee
+autocmd MyAutoCmd BufNewFile,BufRead *.sass     setlocal filetype=sass
+autocmd MyAutoCmd BufNewFile,BufRead *.less     setlocal filetype=less
 
 " Short indent
 autocmd MyAutoCmd filetype ruby   call s:set_short_indent()
 autocmd MyAutoCmd filetype vim    call s:set_short_indent()
 autocmd MyAutoCmd filetype coffee call s:set_short_indent()
+autocmd MyAutoCmd filetype html   call s:set_short_indent()
 autocmd MyAutoCmd filetype sass   call s:set_short_indent()
 autocmd MyAutoCmd filetype less   call s:set_short_indent()
 
