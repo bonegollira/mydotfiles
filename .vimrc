@@ -171,12 +171,13 @@ autocmd MyAutoCmd BufNewFile,BufRead *.sass     setlocal filetype=sass
 autocmd MyAutoCmd BufNewFile,BufRead *.less     setlocal filetype=less
 
 " Short indent
-autocmd MyAutoCmd filetype ruby   call s:set_short_indent()
-autocmd MyAutoCmd filetype vim    call s:set_short_indent()
-autocmd MyAutoCmd filetype coffee call s:set_short_indent()
-autocmd MyAutoCmd filetype html   call s:set_short_indent()
-autocmd MyAutoCmd filetype sass   call s:set_short_indent()
-autocmd MyAutoCmd filetype less   call s:set_short_indent()
+autocmd MyAutoCmd filetype ruby       call s:set_short_indent()
+autocmd MyAutoCmd filetype vim        call s:set_short_indent()
+autocmd MyAutoCmd filetype coffee     call s:set_short_indent()
+autocmd MyAutoCmd filetype html       call s:set_short_indent()
+autocmd MyAutoCmd filetype sass       call s:set_short_indent()
+autocmd MyAutoCmd filetype less       call s:set_short_indent()
+autocmd MyAutoCmd filetype javascript call s:set_short_indent()
 
 " }}}
 
@@ -265,6 +266,11 @@ command! Sjis  :e ++enc=shift-jis
 " }}}
 
 " Plugin settings {{{
+"
+" php-doc.vim
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-P> :call PhpDocSingle()<CR>
+vnoremap <C-P> :call PhpDocRange()<CR>
 
 " minibufexplorer.vim
 let g:miniBufExplMapWindowNavVim = 1 
@@ -285,18 +291,18 @@ nnoremap ,9 :b9<CR>
 " zencoding.vim
 let g:user_zen_settings = {
 \  "lang":"ja",
-\  "indentation":"    ",
+\  "indentation":"  ",
 \  "html":{
 \    "snippets":{
 \      'html:jqm': "<!DOCTYPE HTML>\n"
 \                . "<html lang=\"${lang}\">\n"
 \                . "<head>\n"
-\                . "    <meta charset=\"${charset}\">\n"
-\                . "    <title></title>\n"
-\                . "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
-\                . "    <link rel=\"stylesheet\" href=\"http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css\" />\n"
-\                . "    <script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-1.6.4.min.js\"></script>\n"
-\                . "    <script type=\"text/javascript\" src=\"http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js\"></script>\n"
+\                . "  <meta charset=\"${charset}\">\n"
+\                . "  <title></title>\n"
+\                . "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+\                . "  <link rel=\"stylesheet\" href=\"http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css\" />\n"
+\                . "  <script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-1.6.4.min.js\"></script>\n"
+\                . "  <script type=\"text/javascript\" src=\"http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js\"></script>\n"
 \                . "</head>\n"
 \                . "<body>\n\t${child}|\n</body>\n"
 \                . "</html>",
