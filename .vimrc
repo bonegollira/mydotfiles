@@ -61,7 +61,7 @@ set smartcase
 
 " listchars
 set list
-set listchars=tab:>_,extends:>,precedes:<,eol:$
+set listchars=tab:>_,trail:-,extends:>,precedes:<,eol:$
 
 " shift
 set shiftround
@@ -122,7 +122,7 @@ set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ 
 " syntax
 syntax on
 set t_Co=256
-colorscheme wombat256mod
+colorscheme wombat256
 "colorscheme solarized
 
 " number
@@ -201,8 +201,9 @@ if has('iconv')
   endif
   " fileencodingsを構築
   if &encoding ==# 'utf-8'
+    set fileencodings-=utf-8
     let s:fileencodings_default = &fileencodings
-    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
+    let &fileencodings = s:enc_jis .',utf-8,'. s:enc_euc .',cp932'
     let &fileencodings = &fileencodings .','. s:fileencodings_default
     unlet s:fileencodings_default
   else
