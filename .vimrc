@@ -56,7 +56,7 @@ set smarttab
 set tabstop=4
 
 " search
-set hlsearch
+set nohlsearch
 set smartcase
 
 " listchars
@@ -177,7 +177,6 @@ autocmd MyAutoCmd filetype coffee     call s:set_short_indent()
 autocmd MyAutoCmd filetype html       call s:set_short_indent()
 autocmd MyAutoCmd filetype sass       call s:set_short_indent()
 autocmd MyAutoCmd filetype less       call s:set_short_indent()
-autocmd MyAutoCmd filetype javascript call s:set_short_indent()
 
 " }}}
 
@@ -343,4 +342,30 @@ let g:user_zen_settings = {
 \  },
 \}
 
+" NERDTree
+" 引数なしで実行したとき、NERDTreeを実行する
+let file_name = expand("%:p")
+if has('vim_starting') && file_name == ""
+  autocmd VimEnter * call ExecuteNERDTree()
+endif
+
+" カーソルが外れているときは自動的にnerdtreeを隠す
+function! ExecuteNERDTree()
+  if !exists('g:nerdstatus')
+    execute 'NERDTree ./'
+    let g:windowWidth = winwidth(winnr())
+    let g:nerdtreebuf = bufnr('')
+    let g:nerdstatus = 1
+  elseif g:nerdstatus == 1
+    execute 'wincmd t'
+    execute 'vertical resize' 0
+    execute 'wincmd p'
+    let g:nerdstatus = 2
+  elseif g:nerdstatus == 2
+    execute 'wincmd t'
+    execute 'vertical resize' g:windowWidth
+    let g:nerdstatus = 1
+  endif
+endfunction
+noremap <c-e> :call ExecuteNERDTree()<cr>
 " }}}

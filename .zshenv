@@ -15,8 +15,12 @@ export LANG=ja_JP.UTF-8
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
 
 path=(
+$HOME/.rbenv/bin
 $HOME/.bin
+$HOME/.nodebrew/current/bin
 $path
 )
 
 fpath=($fpath $HOME/.zfunc)
+
+eval "$(rbenv init -)"

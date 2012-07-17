@@ -7,7 +7,7 @@
 # alias
 alias ls="ls -ahGF"
 alias ll="ls -lahGF"
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -u $HOME/.vimrc "$@"'
+alias be="bundle exec"
 
 # global alias
 alias -g G='| grep'
