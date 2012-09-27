@@ -33,13 +33,17 @@ call vundle#rc()
 
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'ZenCoding.vim'
-Bundle 'php-doc--su'
+Bundle 'vexxor/phpdoc.vim'
 Bundle 'javascript.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'groenewege/vim-less'
 Bundle 'othree/html5.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'Shougo/neocomplcache'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'tomasr/molokai'
 
 " }}}
 
@@ -171,6 +175,7 @@ autocmd MyAutoCmd BufNewFile,BufRead *.sass     setlocal filetype=sass
 autocmd MyAutoCmd BufNewFile,BufRead *.less     setlocal filetype=less
 
 " Short indent
+autocmd MyAutoCmd filetype javascript call s:set_short_indent()
 autocmd MyAutoCmd filetype ruby       call s:set_short_indent()
 autocmd MyAutoCmd filetype vim        call s:set_short_indent()
 autocmd MyAutoCmd filetype coffee     call s:set_short_indent()
@@ -252,6 +257,7 @@ nmap g* g*zz
 nmap g# g#zz
 
 nmap ,u :set fileformat=unix<CR>
+nmap ,d :set fileformat=dos<CR>
 nmap { <c-w><
 nmap } <c-w>>
 
@@ -344,28 +350,29 @@ let g:user_zen_settings = {
 
 " NERDTree
 " 引数なしで実行したとき、NERDTreeを実行する
-let file_name = expand("%:p")
-if has('vim_starting') && file_name == ""
-  autocmd VimEnter * call ExecuteNERDTree()
-endif
-
-" カーソルが外れているときは自動的にnerdtreeを隠す
-function! ExecuteNERDTree()
-  if !exists('g:nerdstatus')
-    execute 'NERDTree ./'
-    let g:windowWidth = winwidth(winnr())
-    let g:nerdtreebuf = bufnr('')
-    let g:nerdstatus = 1
-  elseif g:nerdstatus == 1
-    execute 'wincmd t'
-    execute 'vertical resize' 0
-    execute 'wincmd p'
-    let g:nerdstatus = 2
-  elseif g:nerdstatus == 2
-    execute 'wincmd t'
-    execute 'vertical resize' g:windowWidth
-    let g:nerdstatus = 1
-  endif
-endfunction
-noremap <c-e> :call ExecuteNERDTree()<cr>
+"let file_name = expand("%:p")
+"if has('vim_starting') && file_name == ""
+"  autocmd VimEnter * call ExecuteNERDTree()
+"endif
+"
+"" カーソルが外れているときは自動的にnerdtreeを隠す
+"function! ExecuteNERDTree()
+"  if !exists('g:nerdstatus')
+"    execute 'NERDTree ./'
+"    let g:windowWidth = winwidth(winnr())
+"    let g:nerdtreebuf = bufnr('')
+"    let g:nerdstatus = 1
+"  elseif g:nerdstatus == 1
+"    execute 'wincmd t'
+"    execute 'vertical resize' 0
+"    execute 'wincmd p'
+"    let g:nerdstatus = 2
+"  elseif g:nerdstatus == 2
+"    execute 'wincmd t'
+"    execute 'vertical resize' g:windowWidth
+"    let g:nerdstatus = 1
+"  endif
+"endfunction
+"noremap <c-e> :call ExecuteNERDTree()<cr>
+noremap <c-e> :NERDTreeToggle<cr>
 " }}}

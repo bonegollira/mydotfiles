@@ -16,8 +16,10 @@ export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
 
 path=(
 $HOME/.rbenv/bin
-$HOME/.bin
+$HOME/bin
 $HOME/.nodebrew/current/bin
+/Applications/MacVim.app/Contents/MacOS/
+/usr/local/php5/bin
 $path
 )
 

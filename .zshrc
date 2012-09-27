@@ -8,6 +8,8 @@
 alias ls="ls -ahGF"
 alias ll="ls -lahGF"
 alias be="bundle exec"
+alias re="rbenv exec"
+alias mvim="/Applications/MacVim.app/Contents/MacOS/mvim"
 
 # global alias
 alias -g G='| grep'
