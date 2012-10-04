@@ -44,6 +44,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'tomasr/molokai'
+Bundle 'leafgarland/typescript-vim'
 
 " }}}
 
@@ -126,8 +127,7 @@ set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ 
 " syntax
 syntax on
 set t_Co=256
-colorscheme wombat256
-"colorscheme solarized
+colorscheme molokai
 
 " number
 set number
