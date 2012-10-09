@@ -28,23 +28,26 @@ endif
 
 filetype off
 
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'ZenCoding.vim'
-Bundle 'vexxor/phpdoc.vim'
-Bundle 'javascript.vim'
-Bundle 'tpope/vim-rails'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'groenewege/vim-less'
-Bundle 'othree/html5.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Shougo/neocomplcache'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'tomasr/molokai'
-Bundle 'leafgarland/typescript-vim'
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundle 'fholgado/minibufexpl.vim'
+NeoBundle 'ZenCoding.vim'
+NeoBundle 'vexxor/phpdoc.vim'
+NeoBundle 'javascript.vim'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'leafgarland/typescript-vim'
 
 " }}}
 
