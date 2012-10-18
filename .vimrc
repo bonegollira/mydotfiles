@@ -24,7 +24,7 @@ if s:iswin
   set shellslash
 endif
 
-" {{{ Vundle settings
+" {{{ NeoBundle settings
 
 filetype off
 
