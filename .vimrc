@@ -48,6 +48,7 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'tpope/vim-fugitive'
 
 " }}}
 
@@ -319,6 +320,8 @@ let g:user_zen_settings = {
 \    "default_attributes" : {
 \      "link:less"   : {"rel": "stylesheet/less", "type": "text/css", "href": "|"},
 \      "script:yui"  : {"type": "text/javascript", "src": "http://yui.yahooapis.com/3.4.1/build/yui/yui-min.js"},
+\      "script:jquery" : {"type": "text/javascript", "src": "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"},
+\      "script:hbs"  : {"type": "text/x-handlebars-template", "id": "|"},
 \      "div:page"    : {"data-role": "page", "data-title": "|"},
 \      "div:header"  : {"data-role": "header"},
 \      "div:footer"  : {"data-role": "footer"},
@@ -341,7 +344,6 @@ let g:user_zen_settings = {
 \      "l:ex"  : "a:external",
 \      "l:rvs" : "a:reverse",
 \      "l:dlg" : "a:dialog",
-\
 \    },
 \  },
 \  "eruby":{
@@ -377,5 +379,5 @@ let g:user_zen_settings = {
 "  endif
 "endfunction
 "noremap <c-e> :call ExecuteNERDTree()<cr>
-noremap <c-e> :NERDTreeToggle<cr>
+noremap <silent> <c-e> :NERDTreeToggle<cr>
 " }}}
