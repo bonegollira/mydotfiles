@@ -42,13 +42,13 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'othree/html5.vim'
-NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Shougo/unite.vim'
 
 " }}}
 
@@ -353,31 +353,14 @@ let g:user_zen_settings = {
 \  },
 \}
 
-" NERDTree
-" 引数なしで実行したとき、NERDTreeを実行する
-"let file_name = expand("%:p")
-"if has('vim_starting') && file_name == ""
-"  autocmd VimEnter * call ExecuteNERDTree()
-"endif
-"
-"" カーソルが外れているときは自動的にnerdtreeを隠す
-"function! ExecuteNERDTree()
-"  if !exists('g:nerdstatus')
-"    execute 'NERDTree ./'
-"    let g:windowWidth = winwidth(winnr())
-"    let g:nerdtreebuf = bufnr('')
-"    let g:nerdstatus = 1
-"  elseif g:nerdstatus == 1
-"    execute 'wincmd t'
-"    execute 'vertical resize' 0
-"    execute 'wincmd p'
-"    let g:nerdstatus = 2
-"  elseif g:nerdstatus == 2
-"    execute 'wincmd t'
-"    execute 'vertical resize' g:windowWidth
-"    let g:nerdstatus = 1
-"  endif
-"endfunction
-"noremap <c-e> :call ExecuteNERDTree()<cr>
-noremap <silent> <c-e> :NERDTreeToggle<cr>
+" Unite.vim
+" https://github.com/Shougo/unite.vim
+let g:unite_enable_start_insert=1
+
+noremap <C-U><C-B> :Unite buffer<CR>
+noremap <C-U><C-F> :Unite file<CR>
+noremap <C-U><C-R> :Unite file_mru<CR>
+noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " }}}
