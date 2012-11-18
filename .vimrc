@@ -49,6 +49,9 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'thinca/vim-unite-history'
+NeoBundle 'thinca/vim-quickrun'
 
 " }}}
 
@@ -319,7 +322,7 @@ let g:user_zen_settings = {
 \    },
 \    "default_attributes" : {
 \      "link:less"   : {"rel": "stylesheet/less", "type": "text/css", "href": "|"},
-\      "script:yui"  : {"type": "text/javascript", "src": "http://yui.yahooapis.com/3.4.1/build/yui/yui-min.js"},
+\      "script:yui"  : {"type": "text/javascript", "src": "http://yui.yahooapis.com/@/build/yui/yui-min.js"},
 \      "script:jquery" : {"type": "text/javascript", "src": "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"},
 \      "script:hbs"  : {"type": "text/x-handlebars-template", "id": "|"},
 \      "div:page"    : {"data-role": "page", "data-title": "|"},
@@ -357,10 +360,12 @@ let g:user_zen_settings = {
 " https://github.com/Shougo/unite.vim
 let g:unite_enable_start_insert=1
 
-noremap <C-U><C-B> :Unite buffer<CR>
-noremap <C-U><C-F> :Unite file<CR>
-noremap <C-U><C-R> :Unite file_mru<CR>
-noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
+noremap <C-E><C-B> :Unite buffer<CR>
+noremap <C-E><C-F> :UniteWithCurrentDir file<CR>
+noremap <C-E><C-R> :Unite file_mru<CR>
+noremap <C-E><C-Y> :Unite -buffer-name=register register<CR>
+noremap <C-O> :Unite outline<CR>
+noremap <C-H> :Unite history:command<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " }}}
