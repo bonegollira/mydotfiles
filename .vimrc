@@ -49,6 +49,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'thinca/vim-quickrun'
@@ -356,6 +357,9 @@ let g:user_zen_settings = {
 \  },
 \}
 
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+
 " Unite.vim
 " https://github.com/Shougo/unite.vim
 let g:unite_enable_start_insert=1
@@ -365,7 +369,7 @@ noremap <C-E><C-F> :UniteWithCurrentDir file<CR>
 noremap <C-E><C-R> :Unite file_mru<CR>
 noremap <C-E><C-Y> :Unite -buffer-name=register register<CR>
 noremap <C-O> :Unite outline<CR>
-noremap <C-H> :Unite history:command<CR>
+noremap <C-E><C-H> :Unite history/command<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " }}}
