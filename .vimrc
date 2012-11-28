@@ -50,9 +50,11 @@ NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'honza/snipmate-snippets'
 
 " }}}
 
@@ -365,11 +367,17 @@ let g:neocomplcache_enable_at_startup = 1
 let g:unite_enable_start_insert=1
 
 noremap <C-E><C-B> :Unite buffer<CR>
-noremap <C-E><C-F> :UniteWithCurrentDir file<CR>
+noremap <C-E><C-F> :UniteWithBufferDir file<CR>
 noremap <C-E><C-R> :Unite file_mru<CR>
 noremap <C-E><C-Y> :Unite -buffer-name=register register<CR>
 noremap <C-O> :Unite outline<CR>
 noremap <C-E><C-H> :Unite history/command<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+" Shougo/snippet
+imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+
 " }}}
