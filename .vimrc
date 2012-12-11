@@ -380,4 +380,7 @@ imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
 
+" quickrun
+let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
+
 " }}}
