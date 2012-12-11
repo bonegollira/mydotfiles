@@ -44,8 +44,8 @@ function _update_vcs_info_msg() {
 }
 add-zsh-hook precmd _update_vcs_info_msg
 
-PROMPT="%{$fg[green]%}%~ %#%{$reset_color%} "
-RPROMPT="%{$fg[red]%}☁  %1(v|%F{red}%1v%f|) %{$fg[cyan]%}%* %{$fg[blue]%}%n@%m ☁%{$reset_color%}"
+PROMPT="%{$fg[blue]%}%n@%m %{$fg[green]%}%~ %{$fg[red]%}%1(v|%F{red}%1v%f|)%{$fg[green]%}%#%{$reset_color%} "
+RPROMPT="%{$fg[cyan]%}%*%{$reset_color%}"
 PROMPT2="%{$fg[cyan]%}%_%> %{$reset_color}"
 SPROMPT="%{$fg[red]%}%r is correct? [n,y,a,e]: %{$reset_color}"
 
