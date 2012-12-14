@@ -49,6 +49,10 @@ RPROMPT="%{$fg[cyan]%}%*%{$reset_color%}"
 PROMPT2="%{$fg[cyan]%}%_%> %{$reset_color}"
 SPROMPT="%{$fg[red]%}%r is correct? [n,y,a,e]: %{$reset_color}"
 
+if [ "x$VIM" != "x" ]; then
+    PROMPT="%{$fg[red]%}[VIM] $PROMPT"
+fi
+
 # terminal title
 case "${TERM}" in
 kterm*|xterm)
