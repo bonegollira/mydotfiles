@@ -4,6 +4,8 @@
 # maintained by pirosikick
 #
 
+OSTYPE=`uname`
+
 # alias
 alias ls="ls -ahGF"
 alias ll="ls -lahGF"
@@ -45,7 +47,7 @@ function _update_vcs_info_msg() {
 add-zsh-hook precmd _update_vcs_info_msg
 
 PROMPT="%{$fg[blue]%}%n@%m %{$fg[green]%}%~ %{$fg[red]%}%1(v|%F{red}%1v%f|)%{$fg[green]%}%#%{$reset_color%} "
-RPROMPT="%{$fg[cyan]%}%*%{$reset_color%}"
+RPROMPT="%{$fg[cyan]%}%* $OSTYPE%{$reset_color%}"
 PROMPT2="%{$fg[cyan]%}%_%> %{$reset_color}"
 SPROMPT="%{$fg[red]%}%r is correct? [n,y,a,e]: %{$reset_color}"
 
