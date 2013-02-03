@@ -11,7 +11,7 @@ export EDITOR=vim
 export SVN_EDITOR=vim
 export PAGER=less
 export GREP_OPTION='--color=auto'
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
 
 path=(
@@ -25,4 +25,7 @@ $path
 
 fpath=($fpath $HOME/.zfunc)
 
-eval "$(rbenv init -)"
+which rbenv > /dev/null
+if [ $? = 0 ]; then
+    eval "$(rbenv init -)"
+fi
