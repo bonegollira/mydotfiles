@@ -1,4 +1,4 @@
-LIST = .vimrc .zshrc .zshenv
+LIST = .vimrc .zshrc .zshenv .gitconfig
 
 link:
 	SRC=`pwd`;\
