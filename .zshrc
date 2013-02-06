@@ -85,7 +85,6 @@ setopt hist_no_store
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt hist_expire_dups_first
-setopt ignore_eof
 setopt auto_pushd 
 setopt auto_cd
 setopt pushd_ignore_dups
@@ -121,3 +120,5 @@ bindkey '^]' insert-last-word
 function chpwd () { ls }
 
 function zshrc () { source $HOME/.zshrc }
+
+eval "$(rbenv init -)"
