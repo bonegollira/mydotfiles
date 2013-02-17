@@ -7,8 +7,8 @@
 OSTYPE=`uname`
 
 # alias
-alias ls="ls -ahGF"
-alias ll="ls -lahGF"
+alias ls="ls -ahGF --color"
+alias ll="ls -lahGF --color"
 alias be="bundle exec"
 alias re="rbenv exec"
 alias mvim="/Applications/MacVim.app/Contents/MacOS/mvim"
@@ -121,3 +121,5 @@ bindkey '^]' insert-last-word
 function chpwd () { ls }
 
 function zshrc () { source $HOME/.zshrc }
+
+eval "$(rbenv init -)"
