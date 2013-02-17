@@ -85,7 +85,6 @@ setopt hist_no_store
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt hist_expire_dups_first
-setopt ignore_eof
 setopt auto_pushd 
 setopt auto_cd
 setopt pushd_ignore_dups
@@ -100,6 +99,7 @@ setopt prompt_subst
 setopt list_packed
 setopt complete_aliases
 setopt list_types
+
 
 # emacs like key bind
 bindkey -e

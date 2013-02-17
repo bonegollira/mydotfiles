@@ -34,7 +34,6 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundle 'fholgado/minibufexpl.vim'
 NeoBundle 'ZenCoding.vim'
 NeoBundle 'vexxor/phpdoc.vim'
 NeoBundle 'javascript.vim'
@@ -107,6 +106,9 @@ let &backupdir = $MYVIMDIR . '/backup'
 if !isdirectory(&backupdir)
   call mkdir(&backupdir, 'p')
 endif
+
+" reload automatically if file has changed
+set autoread
 
 function! SandboxCallOptionFn(option_name) "{{{
   try
@@ -183,6 +185,7 @@ autocmd MyAutoCmd BufNewFile,BufRead Guardfile  setlocal filetype=ruby
 autocmd MyAutoCmd BufNewFile,BufRead *.coffee   setlocal filetype=coffee
 autocmd MyAutoCmd BufNewFile,BufRead *.sass     setlocal filetype=sass
 autocmd MyAutoCmd BufNewFile,BufRead *.less     setlocal filetype=less
+autocmd MyAutoCmd BufNewFile,BufRead *.json     setlocal filetype=javascript
 
 " Short indent
 autocmd MyAutoCmd filetype javascript call s:set_short_indent()
@@ -268,8 +271,24 @@ nmap g# g#zz
 
 nmap ,u :set fileformat=unix<CR>
 nmap ,d :set fileformat=dos<CR>
-nmap { <c-w><
-nmap } <c-w>>
+nmap { <C-W><
+nmap } <C-W>>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+nnoremap ,1 :b1<CR>
+nnoremap ,2 :b2<CR>
+nnoremap ,3 :b3<CR>
+nnoremap ,4 :b4<CR>
+nnoremap ,5 :b5<CR>
+nnoremap ,6 :b6<CR>
+nnoremap ,7 :b7<CR>
+nnoremap ,8 :b8<CR>
+nnoremap ,9 :b9<CR>
+
 
 " }}}
 
@@ -287,22 +306,9 @@ command! Sjis  :e ++enc=shift-jis
 inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR>
-
-" minibufexplorer.vim
-let g:miniBufExplMapWindowNavVim = 1 
-let g:miniBufExplMapWindowNavArrows = 1 
-let g:miniBufExplMapCTabSwitchBufs = 1 
-let g:miniBufExplModSelTarget = 1 
-
-nnoremap ,1 :b1<CR>
-nnoremap ,2 :b2<CR>
-nnoremap ,3 :b3<CR>
-nnoremap ,4 :b4<CR>
-nnoremap ,5 :b5<CR>
-nnoremap ,6 :b6<CR>
-nnoremap ,7 :b7<CR>
-nnoremap ,8 :b8<CR>
-nnoremap ,9 :b9<CR>
+let g:pdv_cfg_Author = "Hiroyuki Anai<pirosikick@gmail.com>"
+let g:pdv_cfg_Copyright = "Copyright 2013 by Hiroyuki Anai<pirosikick@gmail.com>"
+let g:pdv_cfg_License = ""
 
 " zencoding.vim
 let g:user_zen_settings = {

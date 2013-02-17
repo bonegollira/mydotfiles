@@ -1,7 +1,7 @@
 [core]
 	autocrlf = input
 [user]
-	name = Hiroyuki Anai
+	name = pirosikick
 	email = pirosikick@gmail.com
 [credential]
 	helper = osxkeychain
