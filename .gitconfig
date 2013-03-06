@@ -1,15 +1,19 @@
 [core]
-	autocrlf = input
+    autocrlf = input
 [user]
-	name = pirosikick
-	email = pirosikick@gmail.com
+	name = Hiroyuki Anai
+    email = pirosikick@gmail.com
 [credential]
 	helper = osxkeychain
 [merge]
-	ff = false
 [alias]
-	ci = commit
-	co = checkout
-	b = branch
-	d = diff
-	s = status
+    ci = commit
+    cs = commit -s
+    co = checkout
+    b  = branch
+    br = branch
+    s = status
+    st  = status
+    d = diff
+[github]
+	user = pirosikick
