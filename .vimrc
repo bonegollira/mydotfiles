@@ -54,6 +54,8 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'honza/snipmate-snippets'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/gist-vim'
 
 " }}}
 
@@ -372,6 +374,7 @@ let g:neocomplcache_enable_at_startup = 1
 " https://github.com/Shougo/unite.vim
 let g:unite_enable_start_insert=1
 
+noremap <C-E><C-E> :UniteWithCurrentDir file<CR>
 noremap <C-E><C-B> :Unite buffer<CR>
 noremap <C-E><C-F> :UniteWithBufferDir file<CR>
 noremap <C-E><C-R> :Unite file_mru<CR>
@@ -388,5 +391,15 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
 
 " quickrun
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
+
+" gist.vim
+if has('mac')
+  let g:gist_clip_command = 'pbcopy'
+else
+  let g:gist_clip_command = 'xclip -selection clipboard'
+endif
+
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
 
 " }}}
