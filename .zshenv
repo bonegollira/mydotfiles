@@ -16,10 +16,12 @@ export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
 
 path=(
 $HOME/.rbenv/bin
+$HOME/.phpenv/bin
 $HOME/bin
 $HOME/.nodebrew/current/bin
 /Applications/MacVim.app/Contents/MacOS/
 /usr/local/php5/bin
+/usr/sbin
 $path
 )
 
@@ -28,4 +30,9 @@ fpath=($fpath $HOME/.zfunc)
 which rbenv > /dev/null
 if [ $? = 0 ]; then
     eval "$(rbenv init -)"
+fi
+
+which phpenv > /dev/null
+if [ $? = 0 ]; then
+    eval "$(phpenv init -)"
 fi
