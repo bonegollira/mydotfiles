@@ -28,15 +28,23 @@ endif
 
 filetype off
 
+" for golang
+" http://mattn.kaoriya.net/software/vim/20130531000559.htm
+if $GOROOT != ''
+  set rtp+=$GOROOT/misc/vim
+  exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim", "src/github.com/golang/lint/misc/vim")
+endif
+
+
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set rtp+=~/.vim/bundle/neobundle.vim/
 endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundle 'ZenCoding.vim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vexxor/phpdoc.vim'
-NeoBundle 'javascript.vim'
+NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'groenewege/vim-less'
@@ -49,13 +57,16 @@ NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'vim-scripts/sudo.vim'
+NeoBundle 'Blackrush/vim-gocode'
 
 " }}}
 
@@ -77,7 +88,7 @@ set smartcase
 
 " listchars
 set list
-set listchars=tab:>_,trail:-,extends:>,precedes:<,eol:$
+set listchars=tab:^_,trail:-,extends:>,precedes:<,eol:$
 
 " shift
 set shiftround
@@ -85,6 +96,7 @@ set shiftwidth=4
 
 " completion
 set complete=.,w,b,u,t,i,d,k,kspell
+set completeopt=menu,preview
 set wildmenu
 set wildmode=list:longest
 set pumheight=20
@@ -174,7 +186,7 @@ set fileformats=unix,dos,mac
 " Autocmd {{{
 
 function! s:set_short_indent()  "{{{
-  setlocal expandtab softtabstop=2 shiftwidth=2
+  setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 endfunction " }}}
 
 augroup MyAutoCmd
@@ -188,15 +200,17 @@ autocmd MyAutoCmd BufNewFile,BufRead *.coffee   setlocal filetype=coffee
 autocmd MyAutoCmd BufNewFile,BufRead *.sass     setlocal filetype=sass
 autocmd MyAutoCmd BufNewFile,BufRead *.less     setlocal filetype=less
 autocmd MyAutoCmd BufNewFile,BufRead *.json     setlocal filetype=javascript
+autocmd MyAutoCmd BufNewFile,BufRead *.go       setlocal filetype=go
+autocmd MyAutoCmd BufNewFile,BufRead *.mm       setlocal filetype=objc
 
 " Short indent
-autocmd MyAutoCmd filetype javascript call s:set_short_indent()
 autocmd MyAutoCmd filetype ruby       call s:set_short_indent()
 autocmd MyAutoCmd filetype vim        call s:set_short_indent()
 autocmd MyAutoCmd filetype coffee     call s:set_short_indent()
 autocmd MyAutoCmd filetype html       call s:set_short_indent()
 autocmd MyAutoCmd filetype sass       call s:set_short_indent()
 autocmd MyAutoCmd filetype less       call s:set_short_indent()
+autocmd MyAutoCmd filetype mkd        call s:set_short_indent()
 
 " }}}
 
@@ -383,11 +397,6 @@ noremap <C-O> :Unite outline<CR>
 noremap <C-E><C-H> :Unite history/command<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-
-" Shougo/snippet
-imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
-let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
 
 " quickrun
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
