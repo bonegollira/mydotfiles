@@ -64,9 +64,11 @@ NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'vim-scripts/sudo.vim'
 NeoBundle 'Blackrush/vim-gocode'
+NeoBundle 'akiomik/git-gutter-vim'
+NeoBundle 'briancollins/vim-jst'
+NeoBundle 'nono/vim-handlebars'
 
 " }}}
 
@@ -211,6 +213,7 @@ autocmd MyAutoCmd filetype html       call s:set_short_indent()
 autocmd MyAutoCmd filetype sass       call s:set_short_indent()
 autocmd MyAutoCmd filetype less       call s:set_short_indent()
 autocmd MyAutoCmd filetype mkd        call s:set_short_indent()
+autocmd MyAutoCmd filetype javascript call s:set_short_indent()
 
 " }}}
 
