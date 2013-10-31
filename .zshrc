@@ -9,6 +9,7 @@ OSTYPE=`uname`
 # alias
 alias ls="ls -ahGF"
 alias ll="ls -lahGF"
+alias bi="bundle install --path vendor/bundle"
 alias be="bundle exec"
 alias re="rbenv exec"
 alias mvim="/Applications/MacVim.app/Contents/MacOS/mvim"
@@ -123,4 +124,15 @@ function chpwd () { ls }
 
 function zshrc () { source $HOME/.zshrc }
 
+function macvim () {
+  local mvim="/Applications/MacVim.app/Contents/MacOS/mvim"
+
+  if [[ ${#@} = 0 ]]; then
+    $mvim
+  else
+    $mvim --remote-tab-silent $@
+  fi
+}
+
 eval "$(rbenv init -)"
+
