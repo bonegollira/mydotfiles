@@ -214,6 +214,7 @@ autocmd MyAutoCmd filetype sass       call s:set_short_indent()
 autocmd MyAutoCmd filetype less       call s:set_short_indent()
 autocmd MyAutoCmd filetype mkd        call s:set_short_indent()
 autocmd MyAutoCmd filetype javascript call s:set_short_indent()
+autocmd MyAutoCmd filetype jst        call s:set_short_indent()
 
 " }}}
 
