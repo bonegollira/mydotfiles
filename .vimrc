@@ -210,11 +210,12 @@ autocmd MyAutoCmd filetype ruby       call s:set_short_indent()
 autocmd MyAutoCmd filetype vim        call s:set_short_indent()
 autocmd MyAutoCmd filetype coffee     call s:set_short_indent()
 autocmd MyAutoCmd filetype html       call s:set_short_indent()
-autocmd MyAutoCmd filetype sass       call s:set_short_indent()
+autocmd MyAutoCmd filetype sass,scss  call s:set_short_indent()
 autocmd MyAutoCmd filetype less       call s:set_short_indent()
 autocmd MyAutoCmd filetype mkd        call s:set_short_indent()
 autocmd MyAutoCmd filetype javascript call s:set_short_indent()
 autocmd MyAutoCmd filetype jst        call s:set_short_indent()
+autocmd MyAutoCmd filetype typescript call s:set_short_indent()
 
 " }}}
 
