@@ -198,6 +198,7 @@ augroup END
 " Filetype detection
 autocmd MyAutoCmd BufNewFile,BufRead Gemfile*   setlocal filetype=ruby
 autocmd MyAutoCmd BufNewFile,BufRead Guardfile  setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead Capfile    setlocal filetype=ruby
 autocmd MyAutoCmd BufNewFile,BufRead *.coffee   setlocal filetype=coffee
 autocmd MyAutoCmd BufNewFile,BufRead *.sass     setlocal filetype=sass
 autocmd MyAutoCmd BufNewFile,BufRead *.less     setlocal filetype=less
