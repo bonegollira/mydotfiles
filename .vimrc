@@ -69,6 +69,7 @@ NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'akiomik/git-gutter-vim'
 NeoBundle 'briancollins/vim-jst'
 NeoBundle 'nono/vim-handlebars'
+NeoBundle 'matchit.zip'
 
 " }}}
 
@@ -183,6 +184,9 @@ set fileencodings=iso-2022-jp,utf-8,ucs2le,ucs-2,cp932,euc-jp
 " fileformats
 set fileformats=unix,dos,mac
 
+" enable modeline
+set modeline
+
 " }}}
 
 " Autocmd {{{
@@ -196,15 +200,17 @@ augroup MyAutoCmd
 augroup END
 
 " Filetype detection
-autocmd MyAutoCmd BufNewFile,BufRead Gemfile*   setlocal filetype=ruby
-autocmd MyAutoCmd BufNewFile,BufRead Guardfile  setlocal filetype=ruby
-autocmd MyAutoCmd BufNewFile,BufRead Capfile    setlocal filetype=ruby
-autocmd MyAutoCmd BufNewFile,BufRead *.coffee   setlocal filetype=coffee
-autocmd MyAutoCmd BufNewFile,BufRead *.sass     setlocal filetype=sass
-autocmd MyAutoCmd BufNewFile,BufRead *.less     setlocal filetype=less
-autocmd MyAutoCmd BufNewFile,BufRead *.json     setlocal filetype=javascript
-autocmd MyAutoCmd BufNewFile,BufRead *.go       setlocal filetype=go
-autocmd MyAutoCmd BufNewFile,BufRead *.mm       setlocal filetype=objc
+autocmd MyAutoCmd BufNewFile,BufRead Gemfile*     setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead Vagrantfile  setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead Berksfile    setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead Guardfile    setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead Capfile      setlocal filetype=ruby
+autocmd MyAutoCmd BufNewFile,BufRead *.coffee     setlocal filetype=coffee
+autocmd MyAutoCmd BufNewFile,BufRead *.sass       setlocal filetype=sass
+autocmd MyAutoCmd BufNewFile,BufRead *.less       setlocal filetype=less
+autocmd MyAutoCmd BufNewFile,BufRead *.json       setlocal filetype=javascript
+autocmd MyAutoCmd BufNewFile,BufRead *.go         setlocal filetype=go
+autocmd MyAutoCmd BufNewFile,BufRead *.mm         setlocal filetype=objc
 
 " Short indent
 autocmd MyAutoCmd filetype ruby       call s:set_short_indent()
