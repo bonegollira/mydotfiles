@@ -137,3 +137,4 @@ function macvim () {
 
 eval "$(rbenv init -)"
 
+if [ "$TMUX" = "" ]; then tmux; fi
