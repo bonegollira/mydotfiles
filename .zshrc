@@ -137,4 +137,11 @@ function macvim () {
 
 eval "$(rbenv init -)"
 
-if [ "$TMUX" = "" ]; then tmux; fi
+if [ "$TMUX" = "" ]; then
+    tmux attach;
+
+    # no sessions
+    if [ $? ]; then
+        tmux;
+    fi
+fi
