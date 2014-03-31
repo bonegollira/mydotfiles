@@ -14,6 +14,7 @@ export GREP_OPTION='--color=auto'
 export LANG=en_US.UTF-8
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
 export GOPATH=$HOME/go
+export DOCKER_HOST=tcp://127.0.0.1:4243
 
 eval "$(go env)"
 

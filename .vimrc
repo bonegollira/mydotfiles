@@ -70,6 +70,7 @@ NeoBundle 'akiomik/git-gutter-vim'
 NeoBundle 'briancollins/vim-jst'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'matchit.zip'
+NeoBundle 'ekalinin/Dockerfile.vim'
 
 " }}}
 
