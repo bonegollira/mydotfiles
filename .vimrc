@@ -60,7 +60,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'honza/snipmate-snippets'
+NeoBundle 'honza/vim-snippets'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'leafgarland/typescript-vim'
@@ -71,6 +71,7 @@ NeoBundle 'briancollins/vim-jst'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'matchit.zip'
 NeoBundle 'ekalinin/Dockerfile.vim'
+NeoBundle 'heavenshell/vim-jsdoc'
 
 " }}}
 
@@ -423,5 +424,9 @@ endif
 
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
+
+" jsdoc.vim
+let g:jsdoc_allow_input_prompt = 1
+nmap <silent> <C-P> <Plug>(jsdoc)
 
 " }}}
