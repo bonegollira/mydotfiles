@@ -414,7 +414,10 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 " quickrun
-let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
+let g:quickrun_config = {
+      \ '*': {'hook/time/enable': '1'},
+      \'javascript': { "cmdopt" : "--harmony" },
+      \}
 
 " gist.vim
 if has('mac')
