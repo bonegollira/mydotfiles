@@ -1,5 +1,6 @@
 [core]
     autocrlf = input
+	pager = less -r
 [user]
 	name = Hiroyuki Anai
     email = pirosikick@gmail.com
