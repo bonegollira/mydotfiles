@@ -57,7 +57,6 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'honza/vim-snippets'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'leafgarland/typescript-vim'
@@ -71,9 +70,10 @@ NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'heavenshell/vim-jsdoc'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'elzr/vim-json'
+NeoBundle 'mxw/vim-jsx'
 
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 " }}}
@@ -399,7 +399,7 @@ let g:user_zen_settings = {
 \}
 
 " neocomplcache
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 
 " Unite.vim
 " https://github.com/Shougo/unite.vim

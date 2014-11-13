@@ -24,6 +24,7 @@ $HOME/.phpenv/bin
 $HOME/bin
 $HOME/.nodebrew/current/bin
 /Applications/MacVim.app/Contents/MacOS/
+/usr/local/bin
 /usr/local/php5/bin
 /usr/sbin
 ${GOPATH//://bin:}/bin
