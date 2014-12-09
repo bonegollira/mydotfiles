@@ -70,7 +70,7 @@ NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'heavenshell/vim-jsdoc'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'elzr/vim-json'
-NeoBundle 'mxw/vim-jsx'
+NeoBundle 'pirosikick/vim-snippets'
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
@@ -228,6 +228,7 @@ autocmd MyAutoCmd filetype mkd        call s:set_short_indent()
 autocmd MyAutoCmd filetype javascript call s:set_short_indent()
 autocmd MyAutoCmd filetype jst        call s:set_short_indent()
 autocmd MyAutoCmd filetype typescript call s:set_short_indent()
+autocmd MyAutoCmd filetype neosnippet call s:set_short_indent()
 
 " }}}
 
@@ -453,4 +454,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " }}}
