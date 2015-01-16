@@ -37,10 +37,16 @@ endif
 
 
 if has('vim_starting')
-  set rtp+=~/.vim/bundle/neobundle.vim/
+  if &compatible
+    set nocompatible
+  endif
+
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vexxor/phpdoc.vim'
@@ -62,7 +68,7 @@ NeoBundle 'mattn/gist-vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'vim-scripts/sudo.vim'
 NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'akiomik/git-gutter-vim'
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'briancollins/vim-jst'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'matchit.zip'
@@ -70,16 +76,21 @@ NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'heavenshell/vim-jsdoc'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'elzr/vim-json'
+NeoBundle 'othree/yajs.vim'
 NeoBundle 'pirosikick/vim-snippets'
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+
+call neobundle#end()
+
+filetype plugin indent on
+
+NeoBundleCheck
 " }}}
 
-filetype plugin on
-filetype indent on
 
 " Options {{{
 
