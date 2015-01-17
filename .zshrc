@@ -14,6 +14,7 @@ alias be="bundle exec"
 alias re="rbenv exec"
 alias mvim="/Applications/MacVim.app/Contents/MacOS/mvim"
 alias gitvdiff='git difftool --tool=vimdiff --no-prompt'
+alias iojs='nodebrew exec io@v1.0.1 -- node'
 
 # global alias
 alias -g G='| grep'
