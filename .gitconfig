@@ -18,3 +18,5 @@
     d = diff
 [github]
 	user = pirosikick
+[ghq]
+    root = ~/src
