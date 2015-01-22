@@ -1,4 +1,4 @@
-LIST = .vimrc .zshrc .zshenv .gitconfig
+LIST = .vimrc .zshrc .zshenv .gitconfig .peco.zsh
 
 link:
 	SRC=`pwd`;\
