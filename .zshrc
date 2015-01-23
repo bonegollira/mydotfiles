@@ -164,4 +164,4 @@ function light() {
     $src | highlight -O rtf --syntax $1 --font=Ricty --style=molokai --font-size 24 | pbcopy
 }
 
-. ~/.peco.zsh
+. ~/zsh/peco.zsh
