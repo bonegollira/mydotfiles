@@ -231,8 +231,8 @@ autocmd MyAutoCmd BufNewFile,BufRead *.go         setlocal filetype=go
 autocmd MyAutoCmd BufNewFile,BufRead *.mm         setlocal filetype=objc
 
 " Load skeleton
-autocmd BufNewFile *.js 0r ~/.vim/templates/skelton.js
-autocmd BufNewFile *.jsx 0r ~/.vim/templates/skelton.jsx
+autocmd BufNewFile *.js 0r ~/.vim/templates/skeleton.js
+autocmd BufNewFile *.jsx 0r ~/.vim/templates/skeleton.jsx
 
 " Short indent
 autocmd MyAutoCmd filetype ruby       call s:set_short_indent()
