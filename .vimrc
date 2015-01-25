@@ -203,6 +203,8 @@ set fileformats=unix,dos,mac
 " enable modeline
 set modeline
 
+set undodir=~/tmp/vim
+
 " }}}
 
 " Autocmd {{{
@@ -227,6 +229,10 @@ autocmd MyAutoCmd BufNewFile,BufRead *.less       setlocal filetype=less
 autocmd MyAutoCmd BufNewFile,BufRead *.json       setlocal filetype=javascript
 autocmd MyAutoCmd BufNewFile,BufRead *.go         setlocal filetype=go
 autocmd MyAutoCmd BufNewFile,BufRead *.mm         setlocal filetype=objc
+
+" Load skeleton
+autocmd BufNewFile *.js 0r ~/.vim/templates/skelton.js
+autocmd BufNewFile *.jsx 0r ~/.vim/templates/skelton.jsx
 
 " Short indent
 autocmd MyAutoCmd filetype ruby       call s:set_short_indent()
