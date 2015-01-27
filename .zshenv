@@ -19,15 +19,15 @@ export DOCKER_HOST=tcp://127.0.0.1:4243
 eval "$(go env)"
 
 path=(
+./node_modules/.bin
+$GOPATH/bin
 $HOME/.rbenv/bin
 $HOME/.phpenv/bin
-$HOME/bin
 $HOME/.nodebrew/current/bin
 /Applications/MacVim.app/Contents/MacOS/
 /usr/local/bin
 /usr/local/php5/bin
 /usr/sbin
-${GOPATH}/bin
 $path
 )
 
