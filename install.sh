@@ -27,7 +27,7 @@ else
 fi
 
 PWD=`pwd`
-DOTS=".gitconfig .vimrc .gvimrc .zshrc .zshenv .zsh .gemrc .tmux.conf .vim/templates"
+DOTS=".vimrc .gvimrc .zshrc .zshenv .zsh .gemrc .tmux.conf .vim/templates"
 
 mkdir -p ~/.vim
 
@@ -37,6 +37,10 @@ for dotfile in $DOTS
 do
     ln -snf $PWD/$dotfile ~/$dotfile
 done
+
+if [ ! -f $PWD/.gitconfig ]; then
+    ln -snf $PWD/.gitconfig ~/.gitconfig
+fi
 
 # Install neobundle.vim
 echo "neobundle.vim: installing..."

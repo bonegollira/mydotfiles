@@ -229,6 +229,7 @@ autocmd MyAutoCmd BufNewFile,BufRead *.less       setlocal filetype=less
 autocmd MyAutoCmd BufNewFile,BufRead *.json       setlocal filetype=javascript
 autocmd MyAutoCmd BufNewFile,BufRead *.go         setlocal filetype=go
 autocmd MyAutoCmd BufNewFile,BufRead *.mm         setlocal filetype=objc
+autocmd MyAutoCmd BufNewFile,BufRead *.ect        setlocal filetype=jst
 
 " Load skeleton
 autocmd BufNewFile *.js 0r ~/.vim/templates/skeleton.js
