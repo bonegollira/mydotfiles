@@ -129,7 +129,11 @@ zstyle :insert-last-word match \
 bindkey '^]' insert-last-word
 
 # functions
-function chpwd () { ls }
+function chpwd () {
+  _cdd_chpwd
+  ls
+}
+
 
 function zshrc () { source $HOME/.zshrc }
 
@@ -165,3 +169,4 @@ function light() {
 }
 
 . ~/.zsh/peco.zsh
+. ~/.zsh/cdd.zsh
