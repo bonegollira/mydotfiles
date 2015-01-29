@@ -77,6 +77,7 @@ NeoBundle 'heavenshell/vim-jsdoc'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'othree/yajs.vim'
+NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'pirosikick/vim-snippets'
 
 NeoBundle 'Shougo/unite.vim'
