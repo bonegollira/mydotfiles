@@ -18,6 +18,7 @@ alias iojs='nodebrew exec io@v1.0.1 -- node'
 
 # http://qiita.com/Kuniwak/items/b711d6c3e402dfd9356b
 alias g='git'
+
 alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
 alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
 alias -g H='`curl -sL https://api.github.com/users/pirosikick/repos | jq -r ".[].full_name" | peco --prompt "GITHUB REPOS>" | head -n 1`'
@@ -78,6 +79,8 @@ esac
 [ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
 
 autoload -U compinit && compinit
+
+compdef g=git
 
 # history
 HISTFILE=$HOME/.zsh_history
