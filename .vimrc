@@ -57,7 +57,7 @@ NeoBundle 'groenewege/vim-less'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'tomasr/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'h1mesuke/unite-outline'
@@ -78,12 +78,15 @@ NeoBundle 'mxw/vim-jsx'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'othree/yajs.vim'
 NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'pirosikick/vim-snippets'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'rking/ag.vim'
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+
+NeoBundle 'pirosikick/vim-snippets'
 
 call neobundle#end()
 
@@ -134,6 +137,11 @@ if has('unix')
   set swapsync=
 endif
 
+if (exists('+colorcolumn'))
+  set colorcolumn=80
+  highlight ColorColumn ctermbg=9
+endif
+
 " backup
 set backup
 let &backupdir = $MYVIMDIR . '/backup'
@@ -173,7 +181,12 @@ set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ 
 " syntax
 syntax on
 set t_Co=256
-colorscheme molokai
+set background=dark
+
+try
+  colorscheme solarized
+catch
+endtry
 
 " number
 set number
@@ -434,6 +447,20 @@ noremap <C-O> :Unite outline<CR>
 noremap <C-E><C-H> :Unite history/command<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+let g:unite_source_history_yank_enable = 1
+try
+  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+catch
+endtry
+" search a file in the filetree
+nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
+" reset not it is <C-l> normally
+:nnoremap <space>r <Plug>(unite_restart)
+
+" ag
+nnoremap <space>/ :Ag 
 
 " quickrun
 let g:quickrun_config = {
