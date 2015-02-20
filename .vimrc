@@ -80,6 +80,8 @@ NeoBundle 'othree/yajs.vim'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'wavded/vim-stylus'
+NeoBundle 'sorah/unite-ghq'
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
@@ -332,6 +334,9 @@ endif
 
 " Shortcut mappings {{{
 
+" <Leader>
+let mapleader = ","
+
 " :nohlsearch
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
@@ -448,13 +453,18 @@ let g:neocomplete#enable_at_startup = 1
 " https://github.com/Shougo/unite.vim
 let g:unite_enable_start_insert=1
 
-noremap <C-E><C-E> :UniteWithCurrentDir file<CR>
-noremap <C-E><C-B> :Unite buffer<CR>
-noremap <C-E><C-F> :UniteWithBufferDir file<CR>
-noremap <C-E><C-R> :Unite file_mru<CR>
-noremap <C-E><C-Y> :Unite -buffer-name=register register<CR>
-noremap <C-O> :Unite outline<CR>
-noremap <C-E><C-H> :Unite history/command<CR>
+noremap [unite] <Nop>
+map <Leader>u [unite]
+
+nnoremap <silent>[unite]e :<C-u>UniteWithCurrentDir file<CR>
+nnoremap <silent>[unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent>[unite]f :<C-u>UniteWithBufferDir file<CR>
+nnoremap <silent>[unite]r :<C-u>Unite file_mru<CR>
+nnoremap <silent>[unite]y :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent>[unite]o :<C-u>Unite outline<CR>
+nnoremap <silent>[unite]h :<C-u>Unite history/command<CR>
+nnoremap <silent>[unite]g :<C-u>Unite ghq<CR>
+
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
