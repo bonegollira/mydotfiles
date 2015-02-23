@@ -15,6 +15,7 @@ alias re="rbenv exec"
 alias mvim="/Applications/MacVim.app/Contents/MacOS/mvim"
 alias gitvdiff='git difftool --tool=vimdiff --no-prompt'
 alias iojs='nodebrew exec io@v1.0.1 -- node'
+alias ag="the_silver_searcher"
 
 # http://qiita.com/Kuniwak/items/b711d6c3e402dfd9356b
 alias g='git'
@@ -28,6 +29,9 @@ alias -g LR='`git branch -a | peco --query "remotes/ " --prompt "GIT REMOTE BRAN
 alias -g G='| grep'
 alias -g L='| vim -R -'
 alias -g ID='`id -u`'
+
+# hub -> git
+eval "$(hub alias -s)"
 
 # prompt
 autoload -Uz add-zsh-hook
