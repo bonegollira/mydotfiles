@@ -28,6 +28,7 @@ alias -g LR='`git branch -a | peco --query "remotes/ " --prompt "GIT REMOTE BRAN
 alias -g G='| grep'
 alias -g L='| vim -R -'
 alias -g ID='`id -u`'
+alias -g HL='| pygments -f rtf "style=monokai,fontface=Ricty"'
 
 # prompt
 autoload -Uz add-zsh-hook
@@ -168,7 +169,7 @@ function light() {
         src="/bin/cat $2"
     fi
 
-    $src | highlight -O rtf --syntax $1 --font=Ricty --style=molokai --font-size 24 | pbcopy
+    ${=src} |  pygmentize -f rtf -l $1 -O "style=monokai,fontface=Ricty" | pbcopy
 }
 
 . ~/.zsh/peco.zsh
