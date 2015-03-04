@@ -106,7 +106,6 @@ filetype plugin indent on
 NeoBundleCheck
 " }}}
 
-
 " Options {{{
 
 " indent
@@ -231,6 +230,23 @@ set modeline
 
 set undodir=~/tmp/vim
 
+" Using the mouse on a terminal.
+" http://yskwkzhr.blogspot.jp/2013/02/use-mouse-on-terminal-vim.html
+if has('mouse')
+  set mouse=a
+  if has('mouse_sgr')
+    set ttymouse=sgr
+  elseif v:version > 703 || v:version is 703 && has('patch632')
+    set ttymouse=sgr
+  else
+    set ttymouse=xterm2
+  endif
+endif
+
+if has('clipboard')
+  set clipboard=unnamed
+endif
+
 " }}}
 
 " Autocmd {{{
@@ -256,6 +272,7 @@ autocmd MyAutoCmd BufNewFile,BufRead *.json       setlocal filetype=javascript
 autocmd MyAutoCmd BufNewFile,BufRead *.go         setlocal filetype=go
 autocmd MyAutoCmd BufNewFile,BufRead *.mm         setlocal filetype=objc
 autocmd MyAutoCmd BufNewFile,BufRead *.ect        setlocal filetype=jst
+autocmd MyAutoCmd BufNewFile,BufRead *.es6        setlocal filetype=javascript
 
 " Load skeleton
 autocmd BufNewFile *.js 0r ~/.vim/templates/skeleton.js
