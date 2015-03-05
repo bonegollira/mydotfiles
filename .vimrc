@@ -277,6 +277,8 @@ autocmd MyAutoCmd BufNewFile,BufRead *.es6        setlocal filetype=javascript
 " Load skeleton
 autocmd BufNewFile *.js 0r ~/.vim/templates/skeleton.js
 autocmd BufNewFile *.jsx 0r ~/.vim/templates/skeleton.jsx
+autocmd BufNewFile gulpfile.js 0r ~/.vim/templates/gulpfile.js
+autocmd BufNewFile gulpfile.es6 0r ~/.vim/templates/gulpfile.es6
 
 " Short indent
 autocmd MyAutoCmd filetype ruby       call s:set_short_indent()
