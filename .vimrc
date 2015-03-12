@@ -60,7 +60,6 @@ NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'mattn/webapi-vim'
@@ -82,6 +81,9 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'sorah/unite-ghq'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'tyru/open-browser-github.vim'
+NeoBundle 'Shougo/unite-outline'
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
@@ -541,4 +543,25 @@ if has('conceal')
 endif
 
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+" vim-fugitive
+noremap [fugtive] <Nop>
+map <Leader>g [fugtive]
+
+nnoremap <silent>[fugtive]s :Gstatus<CR>
+nnoremap <silent>[fugtive]a :Gwrite 
+nnoremap <silent>[fugtive]c :Gcommit<CR>
+nnoremap <silent>[fugtive]b :Gblame<CR>
+nnoremap <silent>[fugtive]d :Gdiff<CR>
+nnoremap <silent>[fugtive]r :Gread<CR>
+
+
+" open-browser-github.vim
+noremap [obg] <Nop>
+map <Leader>o [obg]
+
+noremap <silent>[obg]f :OpenGithubFile<CR>
+nnoremap <silent>[obg]i :OpenGithubIssue
+nnoremap <silent>[obg]p :OpenGithubPullReq
+
 " }}}
