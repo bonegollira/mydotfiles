@@ -1,4 +1,4 @@
 'use strict';
 
-require('bable/register');
+require('babel/register');
 require('./gulpfile.es6');

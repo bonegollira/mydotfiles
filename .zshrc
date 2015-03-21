@@ -174,3 +174,4 @@ function light() {
 
 . ~/.zsh/peco.zsh
 . ~/.zsh/cdd.zsh
+. ~/.zsh/npm.zsh
