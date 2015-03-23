@@ -48,58 +48,90 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vexxor/phpdoc.vim'
-NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'groenewege/vim-less'
 NeoBundle 'othree/html5.vim'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'mattn/gist-vim', { 'depends': 'mattn/webapi-vim' }
 NeoBundle 'vim-scripts/sudo.vim'
 NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'briancollins/vim-jst'
-NeoBundle 'nono/vim-handlebars'
 NeoBundle 'matchit.zip'
 NeoBundle 'ekalinin/Dockerfile.vim'
-NeoBundle 'heavenshell/vim-jsdoc'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'elzr/vim-json'
-NeoBundle 'othree/yajs.vim'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'rking/ag.vim'
-NeoBundle 'wavded/vim-stylus'
-NeoBundle 'sorah/unite-ghq'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'tyru/open-browser-github.vim'
-NeoBundle 'Shougo/unite-outline'
+NeoBundle 'tyru/open-browser-github.vim', { "depends": ['tyru/open-browser.vim'] }
 
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'sorah/unite-ghq'
+NeoBundle 'thinca/vim-unite-history'
+
 NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'linux' : 'make',
-      \     'unix' : 'gmake',
-      \    },
-      \ }
+  \ 'build' : {
+  \     'windows' : 'tools\\update-dll-mingw',
+  \     'cygwin' : 'make -f make_cygwin.mak',
+  \     'mac' : 'make -f make_mac.mak',
+  \     'linux' : 'make',
+  \     'unix' : 'gmake',
+  \    },
+  \ }
 
 NeoBundle 'pirosikick/vim-snippets'
+
+NeoBundleLazy 'pangloss/vim-javascript',
+  \ { 'autload': { 'filetypes': ['javascript'] } }
+
+NeoBundleLazy 'othree/yajs.vim',
+  \ { 'autoload': { 'filetypes': ['javascript'] } }
+
+NeoBundleLazy 'heavenshell/vim-jsdoc',
+  \ { 'autoload': { 'filetypes': ['javascript'] } }
+
+NeoBundleLazy 'nono/vim-handlebars',
+  \ { 'autoload': { 'filetypes': ['html'] } }
+
+NeoBundle 'briancollins/vim-jst',
+  \ { 'autoload': { 'filetypes': ['jst'] } }
+
+NeoBundleLazy 'leafgarland/typescript-vim',
+  \ { 'autoload' : { 'filetypes': ['typescript'] } }
+
+NeoBundleLazy 'jason0x43/vim-js-indent',
+  \ {
+  \ 'autoload' : { 'filetypes': ['javascript', 'typescript', 'html'] }
+  \ }
+let g:js_indent_typescript = 1
+
+NeoBundleLazy 'clausreinke/typescript-tools',
+  \ {
+  \ 'build' : 'npm install -g',
+  \ 'autoload' : { 'filetypes': ['typescript'] }
+  \ }
+
+NeoBundleLazy 'kchmck/vim-coffee-script',
+  \ { 'autoload': { 'filetypes': ['coffee'] } }
+
+NeoBundleLazy 'wavded/vim-stylus',
+  \ { 'autoload': { 'filetypes': ['stylus'] } }
+
+NeoBundleLazy 'groenewege/vim-less',
+  \ { 'autoload': { 'filetypes': ['less'] } }
+
+NeoBundleLazy 'plasticboy/vim-markdown',
+  \ { 'autoload': { 'filetypes': ['mkd'] } }
+
+NeoBundleLazy 'mattn/emmet-vim',
+  \ { 'autoload': { 'filetypes': ['css', 'javascript', 'html'] } }
 
 call neobundle#end()
 
