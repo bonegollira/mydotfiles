@@ -25,3 +25,17 @@ function peco-src () {
 }
 zle -N peco-src
 bindkey '^]' peco-src
+
+function peco-kill-process () {
+    ps -ef | peco | awk '{ print $2 }' | xargs kill
+    zle clear-screen
+}
+zle -N peco-kill-process
+bindkey '^xk' peco-kill-process   # C-x k
+
+function peco-open-app () {
+    ls | peco | xargs open
+    zle clear-screen
+}
+zle -N peco-open-app
+bindkey '^xo' peco-open-app 
