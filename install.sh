@@ -27,7 +27,7 @@ else
 fi
 
 PWD=`pwd`
-DOTS=".vimrc .gvimrc .zshrc .zshenv .zsh .gemrc .tmux.conf .vim/templates"
+DOTS=".vimrc .gvimrc .zshrc .zshenv .zsh .gemrc .tmux.conf .vim/templates .vim/after"
 
 mkdir -p ~/.vim
 

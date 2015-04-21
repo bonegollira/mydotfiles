@@ -66,6 +66,7 @@ NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tyru/open-browser-github.vim', { "depends": ['tyru/open-browser.vim'] }
+NeoBundle 'vim-jp/vim-go-extra'
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
