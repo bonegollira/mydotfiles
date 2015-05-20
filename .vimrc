@@ -67,6 +67,7 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tyru/open-browser-github.vim', { "depends": ['tyru/open-browser.vim'] }
 NeoBundle 'vim-jp/vim-go-extra'
+NeoBundle 'markcornick/vim-terraform'
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
@@ -295,20 +296,12 @@ augroup MyAutoCmd
 augroup END
 
 " Filetype detection
-autocmd MyAutoCmd BufNewFile,BufRead Gemfile*     setlocal filetype=ruby
-autocmd MyAutoCmd BufNewFile,BufRead Vagrantfile  setlocal filetype=ruby
-autocmd MyAutoCmd BufNewFile,BufRead Berksfile    setlocal filetype=ruby
-autocmd MyAutoCmd BufNewFile,BufRead Guardfile    setlocal filetype=ruby
-autocmd MyAutoCmd BufNewFile,BufRead Capfile      setlocal filetype=ruby
 autocmd MyAutoCmd BufNewFile,BufRead *.coffee     setlocal filetype=coffee
 autocmd MyAutoCmd BufNewFile,BufRead *.sass       setlocal filetype=sass
 autocmd MyAutoCmd BufNewFile,BufRead *.less       setlocal filetype=less
-autocmd MyAutoCmd BufNewFile,BufRead *.json       setlocal filetype=javascript
 autocmd MyAutoCmd BufNewFile,BufRead *.go         setlocal filetype=go
 autocmd MyAutoCmd BufNewFile,BufRead *.mm         setlocal filetype=objc
 autocmd MyAutoCmd BufNewFile,BufRead *.ect        setlocal filetype=jst
-autocmd MyAutoCmd BufNewFile,BufRead *.es6        setlocal filetype=javascript
-autocmd MyAutoCmd BufNewFile,BufRead .eslintrc    setlocal filetype=javascript
 
 " Load skeleton
 autocmd BufNewFile *.js 0r ~/.vim/templates/skeleton.js
