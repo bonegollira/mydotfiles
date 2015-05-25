@@ -31,7 +31,10 @@ $HOME/.nodebrew/current/bin
 $path
 )
 
-fpath=($fpath $HOME/.zfunc)
+fpath=(
+$HOME/.zfunc
+$fpath
+)
 
 which rbenv > /dev/null
 if [ $? = 0 ]; then

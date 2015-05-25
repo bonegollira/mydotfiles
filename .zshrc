@@ -30,51 +30,8 @@ alias -g L='| vim -R -'
 alias -g ID='`id -u`'
 alias -g HL='| pygments -f rtf "style=monokai,fontface=Ricty"'
 
-# prompt
-autoload -Uz add-zsh-hook
-autoload -Uz colors; colors
-autoload -Uz vcs_info
-
-zstyle ':vcs_info:*' enable git svn hg bzr
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
-zstyle ':vcs_info:bzr:*' use-simple true
-
-autoload -Uz is-at-least
-if is-at-least 4.3.10; then
-    # この check-for-changes が今回の設定するところ
-    zstyle ':vcs_info:git:*' check-for-changes true
-    zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
-    zstyle ':vcs_info:git:*' unstagedstr "-"  # 適当の文字列に変更する
-    zstyle ':vcs_info:git:*' formats '(%s)-[%b] %c%u'
-    zstyle ':vcs_info:git:*' actionformats '(%s)-[%b|%a] %c%u'
-fi
-
-function _update_vcs_info_msg() {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-add-zsh-hook precmd _update_vcs_info_msg
-
-PROMPT="%{$fg[blue]%}%n@%m %{$fg[green]%}%~ %{$fg[red]%}%1(v|%F{red}%1v%f|)%{$fg[green]%}%#%{$reset_color%} "
-RPROMPT="%{$fg[cyan]%}%* $OSTYPE%{$reset_color%}"
-PROMPT2="%{$fg[cyan]%}%_%> %{$reset_color}"
-SPROMPT="%{$fg[red]%}%r is correct? [n,y,a,e]: %{$reset_color}"
-
-if [ "x$VIM" != "x" ]; then
-    PROMPT="%{$fg[red]%}[VIM] $PROMPT"
-fi
-
-# terminal title
-case "${TERM}" in
-kterm*|xterm)
-    precmd() {
-        echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-    }
-    ;;
-esac
+autoload -U promptinit && promptinit
+prompt pure
 
 # RVM
 [ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
@@ -132,13 +89,6 @@ zstyle :insert-last-word match \
       '*([^[:space:]][[:alpha:]/\\]|[[:alpha:]/\\][^[:space:]])*'
 bindkey '^]' insert-last-word
 
-# functions
-function chpwd () {
-  _cdd_chpwd
-  ls
-}
-
-
 function zshrc () { source $HOME/.zshrc }
 
 function macvim () {
@@ -173,5 +123,4 @@ function light() {
 }
 
 . ~/.zsh/peco.zsh
-. ~/.zsh/cdd.zsh
 . ~/.zsh/npm.zsh
