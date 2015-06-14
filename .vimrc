@@ -48,7 +48,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'vexxor/phpdoc.vim'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'othree/html5.vim'
@@ -68,15 +67,12 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'tyru/open-browser-github.vim', { "depends": ['tyru/open-browser.vim'] }
 NeoBundle 'vim-jp/vim-go-extra'
 NeoBundle 'markcornick/vim-terraform'
+NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle "nixprime/cpsm", { 'build': { 'unix': './install.sh' } }
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
-
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'sorah/unite-ghq'
-NeoBundle 'thinca/vim-unite-history'
 
 NeoBundle 'Shougo/vimproc.vim', {
   \ 'build' : {
@@ -431,14 +427,6 @@ command! Sjis  :e ++enc=shift-jis
 
 " Plugin settings {{{
 "
-" php-doc.vim
-inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <C-P> :call PhpDocSingle()<CR>
-vnoremap <C-P> :call PhpDocRange()<CR>
-let g:pdv_cfg_Author = "Hiroyuki Anai<pirosikick@gmail.com>"
-let g:pdv_cfg_Copyright = "Copyright 2013 by Hiroyuki Anai<pirosikick@gmail.com>"
-let g:pdv_cfg_License = ""
-
 " zencoding.vim
 let g:user_zen_settings = {
 \  "lang":"ja",
@@ -497,36 +485,6 @@ let g:user_zen_settings = {
 " neocomplcache
 let g:neocomplete#enable_at_startup = 1
 
-" Unite.vim
-" https://github.com/Shougo/unite.vim
-let g:unite_enable_start_insert=1
-
-noremap [unite] <Nop>
-map <Leader>u [unite]
-
-nnoremap <silent>[unite]e :<C-u>UniteWithCurrentDir file<CR>
-nnoremap <silent>[unite]b :<C-u>Unite buffer<CR>
-nnoremap <silent>[unite]f :<C-u>UniteWithBufferDir file<CR>
-nnoremap <silent>[unite]r :<C-u>Unite file_mru<CR>
-nnoremap <silent>[unite]y :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent>[unite]o :<C-u>Unite outline<CR>
-nnoremap <silent>[unite]h :<C-u>Unite history/command<CR>
-nnoremap <silent>[unite]g :<C-u>Unite ghq<CR>
-
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-
-let g:unite_source_history_yank_enable = 1
-try
-  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-catch
-endtry
-" search a file in the filetree
-nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
-" reset not it is <C-l> normally
-:nnoremap <space>r <Plug>(unite_restart)
-
 " ag
 nnoremap <space>/ :Ag 
 
@@ -582,7 +540,6 @@ nnoremap <silent>[fugtive]b :Gblame<CR>
 nnoremap <silent>[fugtive]d :Gdiff<CR>
 nnoremap <silent>[fugtive]r :Gread<CR>
 
-
 " open-browser-github.vim
 noremap [obg] <Nop>
 map <Leader>o [obg]
@@ -591,4 +548,7 @@ noremap <silent>[obg]f :OpenGithubFile<CR>
 nnoremap <silent>[obg]i :OpenGithubIssue
 nnoremap <silent>[obg]p :OpenGithubPullReq
 
+" CtrlP with cpsm
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+nnoremap <C-b> :<C-u>CtrlPBuffer<CR>
 " }}}
