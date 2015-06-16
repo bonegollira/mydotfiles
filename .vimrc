@@ -92,9 +92,6 @@ NeoBundleLazy 'pangloss/vim-javascript',
 NeoBundleLazy 'othree/yajs.vim',
   \ { 'autoload': { 'filetypes': ['javascript'] } }
 
-NeoBundleLazy 'heavenshell/vim-jsdoc',
-  \ { 'autoload': { 'filetypes': ['javascript'] } }
-
 NeoBundleLazy 'nono/vim-handlebars',
   \ { 'autoload': { 'filetypes': ['html'] } }
 
@@ -503,10 +500,6 @@ endif
 
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
-
-" jsdoc.vim
-let g:jsdoc_allow_input_prompt = 1
-nmap <silent> <C-P> <Plug>(jsdoc)
 
 " neosnippet.vim
 " Plugin key-mappings.
