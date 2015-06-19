@@ -542,6 +542,10 @@ nnoremap <silent>[obg]i :OpenGithubIssue
 nnoremap <silent>[obg]p :OpenGithubPullReq
 
 " CtrlP with cpsm
+let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-nnoremap <C-b> :<C-u>CtrlPBuffer<CR>
+nnoremap <Leader>f :<C-u>CtrlP<CR>
+nnoremap <Leader>m :<C-u>CtrlPMixed<CR>
+nnoremap <Leader>d :<C-u>CtrlPDir<CR>
+nnoremap <Leader>l :<C-u>CtrlPLine<CR>
 " }}}
