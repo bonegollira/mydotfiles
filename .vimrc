@@ -68,6 +68,7 @@ NeoBundle 'vim-jp/vim-go-extra'
 NeoBundle 'markcornick/vim-terraform'
 NeoBundle "ctrlpvim/ctrlp.vim"
 NeoBundle "nixprime/cpsm", { 'build': { 'unix': './install.sh' } }
+NeoBundle 'elixir-lang/vim-elixir'
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
