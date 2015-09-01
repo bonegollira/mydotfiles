@@ -24,6 +24,7 @@ $GOPATH/bin
 $HOME/.rbenv/bin
 $HOME/.phpenv/bin
 $HOME/.nodebrew/current/bin
+$HOME/.exenv/bin
 /Applications/MacVim.app/Contents/MacOS/
 /usr/local/bin
 /usr/local/php5/bin
@@ -44,4 +45,9 @@ fi
 which phpenv > /dev/null
 if [ $? = 0 ]; then
     eval "$(phpenv init -)"
+fi
+
+which exenv > /dev/null
+if [ $? = 0 ]; then
+    eval "$(exenv init -)"
 fi
