@@ -488,7 +488,8 @@ nnoremap <space>/ :Ag
 " quickrun
 let g:quickrun_config = {
       \ '*': {'hook/time/enable': '1'},
-      \'javascript': { "cmdopt" : "--harmony" },
+      \'javascript': { "cmdopt" : "--stage 0", "exec": "babel %o %s | node" },
+      \'node': { "cmdopt": "--experimental", "exec": "node %o %s" }
       \}
 
 " gist.vim
