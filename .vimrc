@@ -69,6 +69,7 @@ NeoBundle 'markcornick/vim-terraform'
 NeoBundle "ctrlpvim/ctrlp.vim"
 NeoBundle "nixprime/cpsm", { 'build': { 'unix': './install.sh' } }
 NeoBundle 'elixir-lang/vim-elixir'
+NeoBundle 'scrooloose/syntastic'
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
@@ -550,4 +551,7 @@ nnoremap <Leader>b :<C-u>CtrlPBuffer<CR>
 nnoremap <Leader>m :<C-u>CtrlPMixed<CR>
 nnoremap <Leader>d :<C-u>CtrlPDir<CR>
 nnoremap <Leader>l :<C-u>CtrlPLine<CR>
+
+" syntastic
+let g:syntastic_javascript_checkers = ['eslint']
 " }}}
